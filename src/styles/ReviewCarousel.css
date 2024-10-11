@@ -1,0 +1,87 @@
+.review-carousel {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.review-carousel h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.review-carousel p {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.review-slide {
+  text-align: center;
+  padding: 20px 10px;
+  outline: none;
+}
+
+.review-text {
+  font-size: 1rem;
+  color: #333;
+  font-style: italic;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.review-author {
+  font-weight: bold;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.review-stars {
+  color: #ffc107;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.review-stars i {
+  margin-right: 2px;
+}
+
+.slick-slide {
+  opacity: 1;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+}
+
+.slick-prev {
+  left: -30px;
+}
+
+.slick-next {
+  right: -30px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-slide > div {
+  padding: 0 10px;
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+}
+
+.slick-track {
+  left: -13px;
+}

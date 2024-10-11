@@ -1,0 +1,16 @@
+.footer {
+  background-color: #282c34;
+  padding: 5px;
+  color: white;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+#freepik-credit {
+  margin-top: 0px;
+  font-size: 8px;
+}
+
+p {
+  margin: 0px;
+}

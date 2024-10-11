@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Concierge Services",
+    "icon": "/media/conceirgeMedicine.jpg",
+    "content": "24/7 care for when you need it most, Dr Hoffman has decades of experience taking care of all your medical needs.",
+    "link": "#concierge"
+  },
+  {
+    "title": "DOT Physicals",
+    "icon": "/media/dotPhysical.jpg",
+    "content": "Dr Hoffman offers walk in DOT physicals with appropriate documentation and referrals when needed.",
+    "link": "#dot-physicals"
+  },
+  {
+    "title": "Immigration Physicals",
+    "icon": "/media/immigrationPhysical.jpg",
+    "content": "Dr Hoffman offers scheduled immigration physicals and documentation with quick referrals when necessary",
+    "link": "#immigration-physicals"
+  }
+]

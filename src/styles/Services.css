@@ -1,0 +1,60 @@
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px 40px; /* Increased top padding */
+}
+
+.services-intro {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.service-section {
+  scroll-margin-top: 80px; /* Add this line */
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 5px 30px 30px;
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-section h2 {
+  color: #0066cc;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.service-section h2 i {
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.service-section p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.service-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.service-section li {
+  color: #333;
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.service-section li::before {
+  content: "\2022";
+  color: #0066cc;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}

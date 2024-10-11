@@ -1,0 +1,68 @@
+.container {
+  position: relative;
+  width: 45vw;
+  height: 30vh;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin: 20px; /* Added margin for spacing multiple cards */
+}
+
+.image-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left 0.5s;
+}
+
+.image-box.hovered {
+  left: -100%;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+}
+
+.text-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  overflow-y: auto;
+  background-color: white;
+  transition: left 0.5s;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.text-box.hovered {
+  left: 0;
+}
+
+.text-box h2 {
+  margin-top: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 5px 0;
+}
