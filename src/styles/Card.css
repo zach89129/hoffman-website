@@ -4,7 +4,7 @@
   height: 30vh;
   overflow: hidden;
   border: 1px solid #ccc;
-  margin: 20px; /* Added margin for spacing multiple cards */
+  margin: 20px;
 }
 
 .image-box {

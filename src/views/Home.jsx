@@ -139,7 +139,7 @@ const Home = () => {
               <div className="doctor-highlights">
                 <div className="highlight-item">
                   <i className="fas fa-user-md"></i>
-                  <span>45+ years of experience</span>
+                  <span>40+ years of experience</span>
                 </div>
                 <div className="highlight-item">
                   <i className="fas fa-hospital"></i>
