@@ -9,7 +9,17 @@ const Home = () => {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 0);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   useEffect(() => {
@@ -85,9 +95,10 @@ const Home = () => {
               key={index}
               className="homeCard"
               onClick={() => {
-                const element = document.getElementById(card.link);
+                const element = document.getElementById(card.link.slice(1));
                 if (element) {
                   element.scrollIntoView({ behavior: "smooth" });
+                  window.history.pushState(null, "", `#${card.link.slice(1)}`);
                 }
               }}
             >
