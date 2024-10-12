@@ -109,7 +109,10 @@ const Home = () => {
         <div id="about-doctor-section">
           <div className="about-doctor-container">
             <div className="about-doctor-image">
-              <img src="/media/drHoffman.png" alt="Dr. Edward Hoffman" />
+              <img
+                src={`${process.env.PUBLIC_URL}/media/drHoffman.png`}
+                alt="Dr. Edward Hoffman"
+              />
             </div>
             <div className="about-doctor-content">
               <h2>About Dr. Edward Hoffman</h2>
