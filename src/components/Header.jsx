@@ -9,10 +9,12 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleNavigation = (sectionId) => {
+  const handleNavigation = (sectionId, event) => {
+    event.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `#${sectionId}`);
     }
     setIsMenuOpen(false);
   };
@@ -23,7 +25,7 @@ const Header = () => {
         <Link
           to="/"
           className="logo"
-          onClick={() => handleNavigation("home-section")}
+          onClick={(e) => handleNavigation("home-section", e)}
         >
           Dr. Hoffman Medical
         </Link>
@@ -35,25 +37,25 @@ const Header = () => {
         <nav className={`nav-menu ${isMenuOpen ? "active" : ""}`}>
           <a
             href="#home-section"
-            onClick={() => handleNavigation("home-section")}
+            onClick={(e) => handleNavigation("home-section", e)}
           >
             Home
           </a>
           <a
             href="#services-section"
-            onClick={() => handleNavigation("services-section")}
+            onClick={(e) => handleNavigation("services-section", e)}
           >
             Services
           </a>
           <a
             href="#about-section"
-            onClick={() => handleNavigation("about-section")}
+            onClick={(e) => handleNavigation("about-section", e)}
           >
             The Doctor
           </a>
           <a
             href="#contact-section"
-            onClick={() => handleNavigation("contact-section")}
+            onClick={(e) => handleNavigation("contact-section", e)}
           >
             Contact Us
           </a>

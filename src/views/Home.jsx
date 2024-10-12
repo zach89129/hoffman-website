@@ -85,7 +85,7 @@ const Home = () => {
               key={index}
               className="homeCard"
               onClick={() => {
-                const element = document.getElementById(card.link.slice(1));
+                const element = document.getElementById(card.link);
                 if (element) {
                   element.scrollIntoView({ behavior: "smooth" });
                 }
