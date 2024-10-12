@@ -47,7 +47,7 @@ const Home = () => {
   const divStyle = {
     width: "100%",
     height: "100%",
-    backgroundImage: 'url("/media/HeroImage.jpg")',
+    backgroundImage: `url("${process.env.PUBLIC_URL}/media/HeroImage.jpg")`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -93,7 +93,9 @@ const Home = () => {
             >
               <div className="homeCardImgWrapper">
                 <div
-                  style={{ backgroundImage: `URL(${card.icon})` }}
+                  style={{
+                    backgroundImage: `URL(${process.env.PUBLIC_URL}${card.icon})`,
+                  }}
                   className="homeCardImg"
                 />
               </div>
