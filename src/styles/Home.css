@@ -89,6 +89,8 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  min-height: 340px;
 }
 
 .homeCard:hover {
@@ -334,4 +336,14 @@
   60% {
     transform: translateY(0px) translateX(-50%);
   }
+}
+
+.click-info {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
 }

@@ -2,22 +2,27 @@
   max-width: 800px;
   margin: 60px auto;
   padding: 0 40px;
+  height: 300px;
 }
 
 .review-carousel h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .review-carousel p {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .review-slide {
   text-align: center;
   padding: 20px 10px;
   outline: none;
+  height: 200px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .review-text {
@@ -29,6 +34,41 @@
   max-width: 100%;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  max-height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  padding-right: 10px;
+}
+
+/* For WebKit browsers (Chrome, Safari, etc.) */
+.review-text::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1;
+}
+
+.review-text::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.review-text::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.review-text::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* For Firefox */
+.review-text {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* For IE and Edge */
+.review-text {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 .review-author {

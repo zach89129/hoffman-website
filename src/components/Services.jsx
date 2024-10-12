@@ -40,11 +40,11 @@ const Services = () => {
       <h1>Our Services</h1>
       <h2 className="services-intro">
         Dr. Hoffman and his staff provide personal service because every patient
-        is important. Dr. Edward Hoffman has 50 years of clinical experience and
-        averages more than 50 hours of continuing medical education to make sure
-        he is always up to date with current practices (only 35 hours are
-        required). His diplomas from Harvard are on display in his office to
-        give patients the utmost confidence in their care.
+        is important. Dr. Edward Hoffman has over 40 years of clinical
+        experience and averages more than 50 hours of continuing medical
+        education to make sure he is always up to date with current practices
+        (only 35 hours are required). His diplomas from Harvard are on display
+        in his office to give patients the utmost confidence in their care.
       </h2>
 
       <section ref={generalRef} id="concierge" className="service-section">
@@ -153,9 +153,12 @@ const Services = () => {
         className="service-section"
       >
         <h2>
-          <i className="fas fa-heartbeat"></i> Wellness Therapies
+          <i className="fas fa-heartbeat"></i> Additional Services
         </h2>
-        <h3>We offer a variety of wellness treatments, including:</h3>
+        <h3>
+          We offer a variety of wellness treatments for our concierge patients,
+          including:
+        </h3>
         <ul>
           <li>Meyer's Cocktails</li>
           <li>Vitamin B12 Injections</li>

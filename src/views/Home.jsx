@@ -112,6 +112,7 @@ const Home = () => {
               </div>
               <h3>{card.title}</h3>
               <p>{card.content}</p>
+              <span className="click-info">Click for more info</span>
             </div>
           ))}
         </div>
@@ -129,7 +130,7 @@ const Home = () => {
               <h2>About Dr. Edward Hoffman</h2>
               <p>
                 Las Vegas Resident since 1974, Dr. Hoffman has been
-                self-employed in the private practice of medicine for over 37
+                self-employed in the private practice of medicine for over 40
                 years. With extensive experience in Family Medicine, Dr. Hoffman
                 has held key positions at Sunrise Hospital and Mountain View
                 Hospital, focusing on providing comprehensive, patient-centered
