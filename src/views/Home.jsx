@@ -138,15 +138,21 @@ const Home = () => {
               </p>
               <div className="doctor-highlights">
                 <div className="highlight-item">
-                  <i className="fas fa-user-md"></i>
+                  <div className="about-icon-wrapper">
+                    <i className="fas fa-user-md"></i>
+                  </div>
                   <span>40+ years of experience</span>
                 </div>
                 <div className="highlight-item">
-                  <i className="fas fa-hospital"></i>
+                  <div className="about-icon-wrapper">
+                    <i className="fas fa-hospital"></i>
+                  </div>
                   <span>Former Chief of Family Practice at HCA hospitals</span>
                 </div>
                 <div className="highlight-item">
-                  <i className="fas fa-heartbeat"></i>
+                  <div className="about-icon-wrapper">
+                    <i className="fas fa-heartbeat"></i>
+                  </div>
                   <span>Preventive Medicine Focus</span>
                 </div>
               </div>
@@ -165,25 +171,55 @@ const Home = () => {
           <div id="contact-info">
             <h2>Contact Us</h2>
             <div className="contact-item">
-              <i className="fas fa-phone"></i>
-              <p>Phone: (702) 243-8100</p>
+              <div className="icon-wrapper">
+                <i className="fas fa-phone"></i>
+              </div>
+              <div className="contact-item-content">
+                <p>Phone: (702) 243-8100</p>
+              </div>
             </div>
             <div className="contact-item">
-              <i className="fas fa-fax"></i>
-              <p>Fax: (702) 360-9416</p>
+              <div className="icon-wrapper">
+                <i className="fas fa-fax"></i>
+              </div>
+              <div className="contact-item-content">
+                <p>Fax: (702) 360-9416</p>
+              </div>
             </div>
             <div className="contact-item">
-              <i className="fas fa-envelope"></i>
-              <p>
-                Email:{" "}
-                <a href="mailto:contact@drhoffmanmedical.com">
-                  Send us an Email!
-                </a>
-              </p>
+              <div className="icon-wrapper">
+                <i className="fas fa-envelope"></i>
+              </div>
+              <div className="contact-item-content">
+                <p>
+                  Email:{" "}
+                  <a href="mailto:contact@drhoffmanmedical.com">
+                    Send us an Email!
+                  </a>
+                </p>
+              </div>
             </div>
             <div className="contact-item">
-              <i className="fas fa-map-marker-alt"></i>
-              <p>Address: 8350 W. Sahara Ave Ste 170, Las Vegas NV 89117</p>
+              <div className="icon-wrapper">
+                <i className="fas fa-map-marker-alt"></i>
+              </div>
+              <div className="contact-item-content">
+                <p>Address: 8350 W. Sahara Ave Ste 170, Las Vegas NV 89117</p>
+              </div>
+            </div>
+            <div className="contact-item">
+              <div className="icon-wrapper">
+                <i className="fas fa-clock"></i>
+              </div>
+              <div className="contact-item-content">
+                <p>
+                  <strong>Hours of Operation:</strong>
+                </p>
+                <p>Concierge Patient Services: 24/7</p>
+                <p>In-Office Hours: 9am-4pm</p>
+                <p>Closed 12pm-1pm for lunch</p>
+                <p>Holiday Hours Vary</p>
+              </div>
             </div>
           </div>
           <div id="map-container">
