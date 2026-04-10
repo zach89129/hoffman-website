@@ -13,9 +13,14 @@
   height: 100%;
 }
 
+#home-background-image .home-hero-image {
+  object-fit: cover;
+  object-position: center center;
+}
+
 #opening-text-parent {
   position: absolute;
-  top: 38%;
+  top: 42%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -24,40 +29,23 @@
 
 #opening-text-header {
   color: rgb(21, 21, 21);
-  font-size: 9rem;
+  font-size: clamp(2.25rem, 10vw, 7rem);
   text-transform: uppercase;
   text-shadow: 2px 9px 5px rgb(0 0 0 / 30%);
-  font-family: "Bitter";
+  font-family: "Bitter", serif;
   margin-bottom: 10px;
+  line-height: 1.05;
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 #opening-text-p {
   color: rgb(21, 21, 21);
-  font-size: 4rem;
+  font-size: clamp(1.125rem, 4.5vw, 3rem);
   text-shadow: 2px 9px 5px rgb(0 0 0 / 30%);
-  font-family: "Bitter";
+  font-family: "Bitter", serif;
   margin-top: 10px;
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  #opening-text-header {
-    font-size: 6rem;
-  }
-
-  #opening-text-p {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #opening-text-header {
-    font-size: 4rem;
-  }
-
-  #opening-text-p {
-    font-size: 1.5rem;
-  }
+  line-height: 1.2;
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
 
 #testdiv {
@@ -65,18 +53,30 @@
 }
 
 #services-grid {
-  margin: 80px auto;
+  margin: clamp(2.5rem, 8vw, 5rem) auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  justify-items: center;
-  width: 90%;
-  max-width: 1200px;
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+  width: min(100%, 1200px);
+  padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
+  box-sizing: border-box;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+@media (min-width: 1024px) {
+  #services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: clamp(1.5rem, 2.5vw, 2.25rem);
+  }
 }
 
 .homeCard {
   width: 100%;
   max-width: 350px;
+  min-width: 0;
+  box-sizing: border-box;
+  justify-self: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,53 +85,80 @@
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   position: relative;
+  z-index: 0;
   min-height: 340px;
+  cursor: pointer;
 }
 
 .homeCard:hover {
+  z-index: 1;
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
+.homeCard:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 3px;
+}
+
 .homeCardImgWrapper {
+  position: relative;
   width: 150px;
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
   margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
 .homeCardImg {
-  width: 100%;
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  object-fit: cover;
 }
 
-.homeCard h3 {
+.homeCardTitle {
   font-size: 1.5rem;
-  margin-bottom: 15px;
+  margin: 0 0 15px;
   color: #333;
+  font-weight: 700;
 }
 
-.homeCard p {
+.homeCardBody {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
   font-size: 1rem;
   color: #666;
   line-height: 1.6;
+  margin: 0 0 15px;
 }
 
 @media (max-width: 768px) {
   #background-image-parent {
     height: calc(70vh - 60px);
+    min-height: 280px;
+  }
+
+  #services-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .homeCard {
+    max-width: 100%;
   }
 }
 
-@media (max-width: 768px) {
-  #services-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  #opening-text-parent {
+    width: min(92vw, 100% - 32px);
+  }
+
+  .scroll-indicator {
+    font-size: 2.25rem;
   }
 }
 
@@ -139,21 +166,23 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 80px auto;
+  margin: clamp(3rem, 10vw, 5rem) auto;
   max-width: 1200px;
-  padding: 0 20px;
-  gap: 40px;
+  padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
+  gap: clamp(1.5rem, 5vw, 2.5rem);
+  box-sizing: border-box;
 }
 
 #contact-info,
 #map-container {
-  flex: 1;
-  min-width: 300px;
+  flex: 1 1 300px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 #contact-info h2,
 #map-container h2 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   margin-bottom: 30px;
   color: #333;
 }
@@ -178,7 +207,7 @@
 }
 
 .contact-item p {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.8vw, 1.1rem);
   color: #666;
   margin: 0;
 }
@@ -205,21 +234,25 @@
 @media (max-width: 768px) {
   #contact-map-container {
     flex-direction: column;
+    align-items: stretch;
   }
 
   #contact-info,
   #map-container {
+    flex: 1 1 auto;
     width: 100%;
+    min-width: 0;
   }
 
   #map-container iframe {
-    height: 350px;
+    height: min(350px, 55vh);
+    max-height: 400px;
   }
 }
 
 #about-doctor-section {
   background-color: #f8f9fa;
-  padding: 80px 0;
+  padding: clamp(3rem, 10vw, 5rem) 0;
 }
 
 .about-doctor-container {
@@ -227,17 +260,28 @@
   max-width: 1200px;
   margin: 0 auto;
   align-items: center;
-  gap: 60px;
+  gap: clamp(1.5rem, 5vw, 3.75rem);
+  padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
+  box-sizing: border-box;
 }
 
 .about-doctor-image {
   flex: 0 0 40%;
+  min-width: 0;
 }
 
-.about-doctor-image img {
+.about-doctor-image-inner {
+  position: relative;
   width: 100%;
+  aspect-ratio: 600 / 750;
   border-radius: 15px;
+  overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-doctor-portrait {
+  object-fit: contain;
+  object-position: center;
 }
 
 .about-doctor-content {
@@ -245,13 +289,14 @@
 }
 
 .about-doctor-content h2 {
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
   color: #333;
   margin-bottom: 20px;
+  line-height: 1.15;
 }
 
 .about-doctor-content p {
-  font-size: 1.3rem;
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
   color: #666;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -297,23 +342,31 @@
 @media (max-width: 768px) {
   .about-doctor-container {
     flex-direction: column;
-    padding: 0 20px;
+    align-items: stretch;
   }
 
   .about-doctor-image {
-    flex: 0 0 100%;
-    margin-bottom: 30px;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 30px;
   }
 
   .doctor-highlights {
     flex-direction: column;
     gap: 15px;
+    align-items: flex-start;
   }
 
   .about-icon-wrapper {
     display: flex;
     width: 30px;
     justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .highlight-item span {
+    font-size: 0.95rem;
   }
 }
 

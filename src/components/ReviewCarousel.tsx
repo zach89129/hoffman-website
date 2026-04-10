@@ -1,11 +1,15 @@
-import React from "react";
+"use client";
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles/ReviewCarousel.css";
 import reviews from "../data/Reviews.json";
+import type { Review } from "../types/content";
 
-const ReviewCarousel = () => {
+const reviewList = reviews as Review[];
+
+export default function ReviewCarousel() {
   const settings = {
     dots: true,
     infinite: true,
@@ -32,7 +36,7 @@ const ReviewCarousel = () => {
         </a>
       </p>
       <Slider {...settings}>
-        {reviews.map((review, index) => (
+        {reviewList.map((review, index) => (
           <div key={index} className="review-slide">
             <div className="review-stars">
               {[...Array(review.rating)].map((_, i) => (
@@ -46,6 +50,4 @@ const ReviewCarousel = () => {
       </Slider>
     </div>
   );
-};
-
-export default ReviewCarousel;
+}

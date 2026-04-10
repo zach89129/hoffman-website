@@ -1,13 +1,17 @@
 .review-carousel {
   max-width: 800px;
-  margin: 60px auto;
-  padding: 0 40px;
-  height: 300px;
+  margin: clamp(2rem, 8vw, 3.75rem) auto;
+  padding: 0 max(16px, env(safe-area-inset-left)) 48px max(16px, env(safe-area-inset-right));
+  min-height: 260px;
+  height: auto;
+  box-sizing: border-box;
 }
 
 .review-carousel h2 {
   text-align: center;
   margin-bottom: 10px;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  padding: 0 8px;
 }
 
 .review-carousel p {
@@ -17,9 +21,10 @@
 
 .review-slide {
   text-align: center;
-  padding: 20px 10px;
+  padding: 16px 8px;
   outline: none;
-  height: 200px;
+  min-height: 160px;
+  height: auto;
   display: flex !important;
   flex-direction: column;
   justify-content: center;
@@ -99,11 +104,11 @@
 }
 
 .slick-prev {
-  left: -30px;
+  left: 0;
 }
 
 .slick-next {
-  right: -30px;
+  right: 0;
 }
 
 .slick-list {
@@ -115,7 +120,7 @@
 }
 
 .slick-dots {
-  bottom: -30px;
+  bottom: -32px;
 }
 
 .slick-dots li button:before {
@@ -123,5 +128,39 @@
 }
 
 .slick-track {
-  left: -13px;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .review-carousel {
+    padding-bottom: 44px;
+  }
+
+  .review-text {
+    max-height: min(220px, 45vh);
+    font-size: 0.95rem;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 28px;
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 480px) {
+  .slick-list {
+    margin: 0;
+  }
+
+  .slick-slide > div {
+    padding: 0 4px;
+  }
 }

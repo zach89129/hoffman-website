@@ -7,4 +7,12 @@
 .content-wrapper {
   flex: 1 0 auto;
   padding-bottom: 60px;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding-bottom: 40px;
+  }
 }

@@ -3,18 +3,21 @@
     "title": "Concierge Services",
     "icon": "/media/conceirgeMedicine.jpg",
     "content": "24/7 care for when you need it most, Dr Hoffman has decades of experience taking care of all your medical needs.",
-    "link": "#concierge"
+    "link": "#concierge",
+    "imageAlt": "Illustration of scheduling and 24/7 concierge medical access"
   },
   {
     "title": "DOT Physicals",
     "icon": "/media/DOTPhysical.jpg",
     "content": "Dr Hoffman offers same day walk-in DOT Physicals with Valid ID required.",
-    "link": "#dot-physicals"
+    "link": "#dot-physicals",
+    "imageAlt": "Commercial vehicles representing DOT and CDL medical exams"
   },
   {
     "title": "Immigration Physicals",
     "icon": "/media/immigrationPhysical.jpg",
     "content": "Dr Hoffman offers Immigration Physicals and documentation for the I-693 form.",
-    "link": "#immigration-physicals"
+    "link": "#immigration-physicals",
+    "imageAlt": "US immigration form I-693 paperwork on a desk with pen"
   }
 ]

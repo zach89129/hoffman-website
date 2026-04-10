@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import "../styles/Home.css";
 import homeCards from "../data/HomeCards.json";
-import ReviewCarousel from "../components/ReviewCarousel";
-import Services from "../components/Services";
+import type { HomeCard } from "../types/content";
+import { ServiceCard } from "./ServiceCard";
+import ReviewCarousel from "./ReviewCarousel";
+import Services from "./Services";
 
-const Home = () => {
+const cards = homeCards as HomeCard[];
+
+type HomeProps = {
+  urlHash: string;
+  hashNavigate: (fragment: string) => void;
+};
+
+export default function Home({ urlHash, hashNavigate }: HomeProps) {
   const [offset, setOffset] = useState(0);
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      const element = document.getElementById(hash.slice(1));
+    if (urlHash) {
+      const element = document.getElementById(urlHash.slice(1));
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: "smooth" });
@@ -20,16 +31,15 @@ const Home = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, []);
+  }, [urlHash]);
 
   useEffect(() => {
-    let rafId;
+    let rafId: number;
     const handleScroll = () => {
       rafId = requestAnimationFrame(() => {
-        const scrollY = window.pageYOffset;
-        const heroHeight = document.getElementById(
-          "background-image-parent"
-        ).offsetHeight;
+        const scrollY = window.scrollY;
+        const hero = document.getElementById("background-image-parent");
+        const heroHeight = hero?.offsetHeight ?? 0;
         if (scrollY <= heroHeight) {
           setOffset(scrollY);
         }
@@ -54,15 +64,6 @@ const Home = () => {
     transition: "transform 0.2s ease-out",
   };
 
-  const divStyle = {
-    width: "100%",
-    height: "100%",
-    backgroundImage: `url("${process.env.PUBLIC_URL}/media/HeroImage.jpg")`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  };
-
   const scrollToContent = () => {
     const servicesSection = document.getElementById("services-grid");
     if (servicesSection) {
@@ -74,46 +75,49 @@ const Home = () => {
     <div>
       <div id="home-section">
         <div id="background-image-parent">
-          <div
-            id="home-background-image"
-            style={{ ...divStyle, ...parallaxStyle }}
-          ></div>
+          <div id="home-background-image">
+            <Image
+              src="/media/HeroImage.jpg"
+              alt="Hoffman Medical — concierge family medicine in Las Vegas"
+              fill
+              priority
+              sizes="100vw"
+              className="home-hero-image"
+              style={parallaxStyle}
+            />
+          </div>
           <div id="opening-text-parent">
-            <h2 id="opening-text-header">Hoffman Medical</h2>
+            <h1 id="opening-text-header">Hoffman Medical</h1>
             <p id="opening-text-p">Exceptional Care, Exclusively for You.</p>
           </div>
           <div
             className={`scroll-indicator ${hasScrolled ? "hidden" : ""}`}
             onClick={scrollToContent}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") scrollToContent();
+            }}
+            role="button"
+            tabIndex={0}
           >
             <i className="fas fa-chevron-down"></i>
           </div>
         </div>
         <div id="services-grid">
-          {homeCards.map((card, index) => (
-            <div
+          {cards.map((card, index) => (
+            <ServiceCard
               key={index}
-              className="homeCard"
-              onClick={() => {
-                const element = document.getElementById(card.link.slice(1));
+              card={card}
+              onActivate={() => {
+                const id = card.link.replace(/^#/, "");
+                const element = document.getElementById(id);
                 if (element) {
                   element.scrollIntoView({ behavior: "smooth" });
-                  window.history.pushState(null, "", `#${card.link.slice(1)}`);
+                  hashNavigate(
+                    card.link.startsWith("#") ? card.link : `#${id}`,
+                  );
                 }
               }}
-            >
-              <div className="homeCardImgWrapper">
-                <div
-                  style={{
-                    backgroundImage: `URL(${process.env.PUBLIC_URL}${card.icon})`,
-                  }}
-                  className="homeCardImg"
-                />
-              </div>
-              <h3>{card.title}</h3>
-              <p>{card.content}</p>
-              <span className="click-info">Click for more info</span>
-            </div>
+            />
           ))}
         </div>
       </div>
@@ -121,10 +125,16 @@ const Home = () => {
         <div id="about-doctor-section">
           <div className="about-doctor-container">
             <div className="about-doctor-image">
-              <img
-                src={`${process.env.PUBLIC_URL}/media/drHoffman.png`}
-                alt="Dr. Edward Hoffman"
-              />
+              <div className="about-doctor-image-inner">
+                <Image
+                  src="/media/drHoffman.png"
+                  alt="Dr. Edward Hoffman, family physician in Las Vegas"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="about-doctor-portrait"
+                  priority
+                />
+              </div>
             </div>
             <div className="about-doctor-content">
               <h2>About Dr. Edward Hoffman</h2>
@@ -164,7 +174,7 @@ const Home = () => {
         <ReviewCarousel />
       </div>
       <div id="services-section">
-        <Services />
+        <Services urlHash={urlHash} />
       </div>
       <div id="contact-section">
         <div id="contact-map-container">
@@ -228,16 +238,15 @@ const Home = () => {
               title="Google Maps - Office Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.7256517773326!2d-115.28024068473858!3d36.14430198008756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c0b5cf5e435f%3A0x2a3b0d875f0a6b11!2s8350%20W%20Sahara%20Ave%20%23170%2C%20Las%20Vegas%2C%20NV%2089117!5e0!3m2!1sen!2sus!4v1620238924595!5m2!1sen!2sus"
               width="100%"
-              height="450"
+              height={450}
               style={{ border: 0 }}
-              allowFullScreen=""
+              allowFullScreen
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default Home;
+}
