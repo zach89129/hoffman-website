@@ -15,7 +15,7 @@ export default function Footer() {
           Immigration physicals (I-693)
         </Link>
       </p>
-      <span id="freepik-credit">Images by Freepik.com</span>
+      <span id="freepik-credit">Images by Freepik.com & vecteezy.com</span>
     </footer>
   );
 }

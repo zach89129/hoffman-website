@@ -65,10 +65,41 @@
   align-items: stretch;
 }
 
+@media (min-width: 769px) and (max-width: 1023px) {
+  #services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 1024px) {
   #services-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: clamp(1.5rem, 2.5vw, 2.25rem);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(100%, 1440px);
+    column-gap: clamp(1rem, 1.8vw, 1.75rem);
+    row-gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .homeCard {
+    max-width: none;
+    padding: 24px 16px 22px;
+    min-height: 0;
+  }
+
+  .homeCardImgWrapper {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 14px;
+  }
+
+  .homeCardTitle {
+    font-size: 1.28rem;
+    margin-bottom: 10px;
+  }
+
+  .homeCardBody {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
   }
 }
 

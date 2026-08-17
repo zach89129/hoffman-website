@@ -12,6 +12,7 @@ export default function Services({ urlHash }: ServicesProps) {
   const specializedTestingRef = useRef<HTMLElement | null>(null);
   const dotRef = useRef<HTMLElement | null>(null);
   const immigrationRef = useRef<HTMLElement | null>(null);
+  const peptidesRef = useRef<HTMLElement | null>(null);
   const wellnessRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Services({ urlHash }: ServicesProps) {
       "dot-physicals": dotRef,
       "immigration-physicals": immigrationRef,
       "specialized-testing": specializedTestingRef,
+      "peptides-and-longevity": peptidesRef,
     }[key];
 
     if (targetRef?.current) {
@@ -137,8 +139,8 @@ export default function Services({ urlHash }: ServicesProps) {
         </p>
         <p className="service-internal-link">
           <Link href="/services/immigration-physicals">
-            Immigration medical exam &amp; Form I-693 in Las Vegas — schedule and
-            what to bring
+            Immigration medical exam &amp; Form I-693 in Las Vegas — schedule
+            and what to bring
           </Link>
         </p>
         <ul>
@@ -157,6 +159,29 @@ export default function Services({ urlHash }: ServicesProps) {
             referrals for any outside services
           </li>
         </ul>
+      </section>
+
+      <section
+        ref={peptidesRef}
+        id="peptides-and-longevity"
+        className="service-section"
+      >
+        <h3>
+          <i className="fas fa-flask"></i> Peptides and Longevity
+        </h3>
+        <p className="service-lead">
+          Dr. Hoffman has extensive knowledge and use of many peptides depending
+          on a patient&apos;s needs. He has developed longevity protocols
+          tailored to each individual patient based on their history and current
+          lifestyle.
+        </p>
+        <ul>
+          <li>BPC 157</li>
+          <li>TB500</li>
+          <li>MOTS-c</li>
+          <li>and more!</li>
+        </ul>
+        <p>Please contact for additional details.</p>
       </section>
 
       <section

@@ -9,15 +9,22 @@
   {
     "title": "DOT Physicals",
     "icon": "/media/DOTPhysical.jpg",
-    "content": "Dr Hoffman offers same day walk-in DOT Physicals with Valid ID required.",
+    "content": "Our office offers same day walk-in DOT Physicals with Valid ID required.",
     "link": "#dot-physicals",
     "imageAlt": "Commercial vehicles representing DOT and CDL medical exams"
   },
   {
     "title": "Immigration Physicals",
     "icon": "/media/immigrationPhysical.jpg",
-    "content": "Dr Hoffman offers Immigration Physicals and documentation for the I-693 form.",
+    "content": "Our office offers Immigration Physicals and documentation for the I-693 form.",
     "link": "#immigration-physicals",
     "imageAlt": "US immigration form I-693 paperwork on a desk with pen"
+  },
+  {
+    "title": "Peptides and Longevity",
+    "icon": "/media/vial.jpg",
+    "content": "Dr Hoffman offers peptides and longevity services to help you feel and look your best.",
+    "link": "#peptides-and-longevity",
+    "imageAlt": "Illustration of a vial of peptides"
   }
 ]
