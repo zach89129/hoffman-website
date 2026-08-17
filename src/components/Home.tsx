@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useHeroParallax } from "@/hooks/useHeroParallax";
+import { revealClassName, useInViewOnce } from "@/hooks/useInViewOnce";
 import "../styles/Home.css";
 import homeCards from "../data/HomeCards.json";
 import type { HomeCard } from "../types/content";
@@ -17,8 +19,15 @@ type HomeProps = {
 };
 
 export default function Home({ urlHash, hashNavigate }: HomeProps) {
-  const [offset, setOffset] = useState(0);
-  const [hasScrolled, setHasScrolled] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const parallaxLayerRef = useRef<HTMLDivElement>(null);
+  const [cardsRef, cardsVisible] = useInViewOnce<HTMLDivElement>();
+  const [aboutRef, aboutVisible] = useInViewOnce<HTMLDivElement>();
+  const [reviewsRef, reviewsVisible] = useInViewOnce<HTMLDivElement>();
+  const [servicesRef, servicesVisible] = useInViewOnce<HTMLDivElement>();
+  const [contactRef, contactVisible] = useInViewOnce<HTMLDivElement>();
+
+  useHeroParallax(heroRef, parallaxLayerRef);
 
   useEffect(() => {
     if (urlHash) {
@@ -33,49 +42,11 @@ export default function Home({ urlHash, hashNavigate }: HomeProps) {
     }
   }, [urlHash]);
 
-  useEffect(() => {
-    let rafId: number;
-    const handleScroll = () => {
-      rafId = requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        const hero = document.getElementById("background-image-parent");
-        const heroHeight = hero?.offsetHeight ?? 0;
-        if (scrollY <= heroHeight) {
-          setOffset(scrollY);
-        }
-        if (scrollY > 0 && !hasScrolled) {
-          setHasScrolled(true);
-        } else if (scrollY === 0 && hasScrolled) {
-          setHasScrolled(false);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(rafId);
-    };
-  }, [hasScrolled]);
-
-  const parallaxStyle = {
-    transform: `translateY(${offset * 0.3}px)`,
-    transition: "transform 0.2s ease-out",
-  };
-
-  const scrollToContent = () => {
-    const servicesSection = document.getElementById("services-grid");
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <div>
       <div id="home-section">
-        <div id="background-image-parent">
-          <div id="home-background-image">
+        <div id="background-image-parent" ref={heroRef}>
+          <div id="home-background-image" ref={parallaxLayerRef}>
             <Image
               src="/media/HeroImage.jpg"
               alt="Hoffman Medical — concierge family medicine in Las Vegas"
@@ -83,26 +54,18 @@ export default function Home({ urlHash, hashNavigate }: HomeProps) {
               priority
               sizes="100vw"
               className="home-hero-image"
-              style={parallaxStyle}
             />
           </div>
           <div id="opening-text-parent">
             <h1 id="opening-text-header">Hoffman Medical</h1>
             <p id="opening-text-p">Exceptional Care, Exclusively for You.</p>
           </div>
-          <div
-            className={`scroll-indicator ${hasScrolled ? "hidden" : ""}`}
-            onClick={scrollToContent}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") scrollToContent();
-            }}
-            role="button"
-            tabIndex={0}
-          >
-            <i className="fas fa-chevron-down"></i>
-          </div>
         </div>
-        <div id="services-grid">
+        <div
+          id="services-grid"
+          ref={cardsRef}
+          className={cardsVisible ? "is-visible" : undefined}
+        >
           {cards.map((card, index) => (
             <ServiceCard
               key={index}
@@ -121,7 +84,7 @@ export default function Home({ urlHash, hashNavigate }: HomeProps) {
           ))}
         </div>
       </div>
-      <div id="about-section">
+      <div id="about-section" ref={aboutRef} className={revealClassName(aboutVisible)}>
         <div id="about-doctor-section">
           <div className="about-doctor-container">
             <div className="about-doctor-image">
@@ -170,13 +133,25 @@ export default function Home({ urlHash, hashNavigate }: HomeProps) {
           </div>
         </div>
       </div>
-      <div id="reviews-section">
+      <div
+        id="reviews-section"
+        ref={reviewsRef}
+        className={revealClassName(reviewsVisible)}
+      >
         <ReviewCarousel />
       </div>
-      <div id="services-section">
+      <div
+        id="services-section"
+        ref={servicesRef}
+        className={revealClassName(servicesVisible)}
+      >
         <Services urlHash={urlHash} />
       </div>
-      <div id="contact-section">
+      <div
+        id="contact-section"
+        ref={contactRef}
+        className={revealClassName(contactVisible)}
+      >
         <div id="contact-map-container">
           <div id="contact-info">
             <h2>Contact Us</h2>

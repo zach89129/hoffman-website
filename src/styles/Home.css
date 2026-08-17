@@ -1,16 +1,18 @@
 #background-image-parent {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: clamp(280px, 48vh, 520px);
   overflow: hidden;
 }
 
 #home-background-image {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -8%;
+  left: -5%;
+  width: 110%;
+  height: 116%;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 #home-background-image .home-hero-image {
@@ -20,11 +22,12 @@
 
 #opening-text-parent {
   position: absolute;
-  top: 42%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   width: 85vw;
+  animation: hero-copy-in 0.7s ease both;
 }
 
 #opening-text-header {
@@ -46,10 +49,6 @@
   margin-top: 10px;
   line-height: 1.2;
   padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
-}
-
-#testdiv {
-  height: 300vh;
 }
 
 #services-grid {
@@ -169,11 +168,6 @@
 }
 
 @media (max-width: 768px) {
-  #background-image-parent {
-    height: calc(70vh - 60px);
-    min-height: 280px;
-  }
-
   #services-grid {
     grid-template-columns: 1fr;
     width: 100%;
@@ -187,10 +181,6 @@
 @media (max-width: 480px) {
   #opening-text-parent {
     width: min(92vw, 100% - 32px);
-  }
-
-  .scroll-indicator {
-    font-size: 2.25rem;
   }
 }
 
@@ -404,36 +394,77 @@
   }
 }
 
-.scroll-indicator {
-  position: absolute;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(152, 152, 152, 0.8);
-  font-size: 3rem;
-  animation: bounce 2s infinite;
-  cursor: pointer;
-  transition: opacity 0.3s ease-out;
+@keyframes hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 16px));
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.scroll-indicator.hidden {
-  opacity: 0;
-  pointer-events: none;
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0) translateX(-50%);
+@media (prefers-reduced-motion: no-preference) {
+  .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  40% {
-    transform: translateY(-15px) translateX(-50%);
+
+  .reveal.is-visible {
+    animation: reveal-up 0.6s ease both;
   }
-  60% {
-    transform: translateY(0px) translateX(-50%);
+
+  #services-grid:not(.is-visible) .homeCard {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  #services-grid.is-visible .homeCard {
+    animation: reveal-up 0.55s ease both;
+  }
+
+  #services-grid.is-visible .homeCard:nth-child(1) {
+    animation-delay: 0ms;
+  }
+
+  #services-grid.is-visible .homeCard:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  #services-grid.is-visible .homeCard:nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  #services-grid.is-visible .homeCard:nth-child(4) {
+    animation-delay: 240ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #opening-text-parent,
+  .reveal,
+  .reveal.is-visible,
+  #services-grid .homeCard {
+    animation: none;
+  }
+
+  .reveal,
+  .reveal.is-visible,
+  #services-grid .homeCard {
+    opacity: 1;
+    transform: none;
   }
 }
 
